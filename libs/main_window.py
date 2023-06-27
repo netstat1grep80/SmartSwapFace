@@ -46,7 +46,7 @@ class MainWindow(QMainWindow):
         # 创建参考图片文件路径输入框和选择按钮
         self.check_entry = QLineEdit()
         self.check_entry.setDisabled(False)
-        self.check_entry.setPlaceholderText("如果此处不选择要被替换的人脸参考图，那么图片中的所有人脸都将被替换成同一个人")
+        self.check_entry.setPlaceholderText("当目标图片或者视频中出现多张人脸时，请选择一张图片作为目标参考图。")
         self.check_button_select = QPushButton("选择")
         self.check_button_select.clicked.connect(lambda: self.select_image("check"))
 
@@ -125,26 +125,26 @@ class MainWindow(QMainWindow):
         }
 
         # 创建水平布局并添加控件
-        layout['face']['h'].addWidget(QLabel("新脸:"))
+        layout['face']['h'].addWidget(QLabel("1.人脸图片："))
         layout['face']['h'].addWidget(self.face_entry)
         layout['face']['h'].addSpacerItem(layout['face']['spacer'])
         layout['face']['h'].addWidget(self.face_button_select)
 
 
         # 创建水平布局并添加控件
-        layout['to']['h'].addWidget(QLabel("原图:"))
+        layout['to']['h'].addWidget(QLabel("2.原图/原视频："))
         layout['to']['h'].addWidget(self.to_entry)
         layout['to']['h'].addSpacerItem(layout['to']['spacer'])
         layout['to']['h'].addWidget(self.to_button_select)
 
         # 创建水平布局并添加控件
-        layout['save']['h'].addWidget(QLabel("存储路径:"))
+        layout['save']['h'].addWidget(QLabel("4.存储路径："))
         layout['save']['h'].addWidget(self.save_entry)
         layout['save']['h'].addSpacerItem(layout['save']['spacer'])
         layout['save']['h'].addWidget(self.save_button_select)
 
         # 创建水平布局并添加控件
-        layout['check']['h'].addWidget(QLabel("目标脸:"))
+        layout['check']['h'].addWidget(QLabel("3.目标人脸图片："))
         layout['check']['h'].addWidget(self.check_entry)
         layout['check']['h'].addSpacerItem(layout['check']['spacer'])
         layout['check']['h'].addWidget(self.check_button_select)
@@ -166,9 +166,9 @@ class MainWindow(QMainWindow):
 
 
         # 创建水平布局并添加控件
-        layout['image_view']['h'].addWidget(self.image_view_face)
-        layout['image_view']['h'].addWidget(self.image_view_check)
         layout['image_view']['h'].addWidget(self.image_view_to)
+        layout['image_view']['h'].addWidget(self.image_view_check)
+        layout['image_view']['h'].addWidget(self.image_view_face)
         layout['image_view']['h'].addWidget(self.image_view_save)
 
 
@@ -192,9 +192,9 @@ class MainWindow(QMainWindow):
         # 创建垂直布局并添加水平布局
         v_layout = QVBoxLayout()
 
-        v_layout.addLayout(layout['to']['h'])
-        v_layout.setSpacing(1)
         v_layout.addLayout(layout['face']['h'])
+        v_layout.setSpacing(1)
+        v_layout.addLayout(layout['to']['h'])
         v_layout.setSpacing(1)
         v_layout.addLayout(layout['check']['h'])
         v_layout.setSpacing(1)
@@ -232,13 +232,13 @@ class MainWindow(QMainWindow):
             err_msg = ""
             # 检查是否所有输入框都有值
             if not face_path:
-                err_msg = "请选择要替换的脸"
+                err_msg = "请选择要替换的脸[第一步]"
             # elif not check_path:
             #     err_msg = "请选择要被替换的脸"
             elif not to_path:
-                err_msg = "请选择要被替换的图片或者视频路径"
+                err_msg = "请选择要被替换的图片或者视频路径[第二步]"
             elif not save_path:
-                err_msg = "替换后存储路径"
+                err_msg = "替换后存储路径[第四步]"
             else:
                 self.start_button.setEnabled(False)
                 swap = SwapFace()

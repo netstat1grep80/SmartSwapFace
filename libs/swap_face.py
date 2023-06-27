@@ -12,9 +12,8 @@ class SwapFace():
 
         start = time.time()
 
-        app = FaceAnalysis(name='buffalo_l')
+        app = FaceAnalysis(name='buffalo_l',root="./")
         app.prepare(ctx_id=0, det_size=(512, 512))
-
         swapper = insightface.model_zoo.get_model('inswapper_128.onnx', download=True, download_zip=True)
 
         img_to = get_my_image(swap_to,resize=False)
