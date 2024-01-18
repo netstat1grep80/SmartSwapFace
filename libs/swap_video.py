@@ -57,14 +57,14 @@ if __name__ == '__main__':
         '--swap_to',
         type=str,
         default='',
-        help="要被替换的图片路径"
+        help="视频路径"
     )
 
     parser.add_argument(
         '--swap_face',
         type=str,
         default='',
-        help="脸的路径"
+        help="src face"
     )
 
     parser.add_argument(
@@ -78,7 +78,7 @@ if __name__ == '__main__':
         '--swap_check',
         type=str,
         default='',
-        help="将此图片的脸替换掉"
+        help="dst face"
     )
 
     args = parser.parse_args()
@@ -172,7 +172,7 @@ if __name__ == '__main__':
 
 
     if count_files_in_directory(dst_dir) > 100:
-        command_merge = "ffmpeg -r " + args.swap_fps + " -i " + dst_dir + "%06d.png " + dst_mp4 + " -y"
+        command_merge = "ffmpeg -r " + args.swap_fps + " -i " + dst_dir + "%08d.png " + dst_mp4 + " -y"
         print(command_merge)
         os.system(command_merge)
 
