@@ -10,6 +10,6 @@ python： 3.10 （其他版本未知）
 <img src="resource/3.png">
 <img src="resource/2.png">
 
-修改代码后，也可以做视频的换脸
+修改代码后，也可以做视频的换脸 [<a href='https://youtu.be/thG-9h_xbBI' target=_blank>查看视频</a>]
 
-[![](https://i.ytimg.com/vi/thG-9h_xbBI/maxresdefault.jpg)](https://youtu.be/thG-9h_xbBI "")
+<img src='https://i.ytimg.com/vi/thG-9h_xbBI/maxresdefault.jpg' >
